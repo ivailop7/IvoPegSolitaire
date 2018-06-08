@@ -1,8 +1,8 @@
-let knightPosition = [4, 3];
+let ballPosition = [4, 3];
 let observer = null;
 
 function emitChange() {
-  observer(knightPosition);
+  observer(ballPosition);
 }
 
 export function observe(o) {
@@ -14,13 +14,13 @@ export function observe(o) {
   emitChange();
 }
 
-export function moveKnight(toX, toY) {
-  knightPosition = [toX, toY];
+export function moveBall(toX, toY) {
+  ballPosition = [toX, toY];
   emitChange();
 }
 
-export function canMoveKnight(toX, toY) {  
-    const [x, y] = knightPosition;
+export function canMoveBall(toX, toY) {
+    const [x, y] = ballPosition;
     const dx = toX - x;
     const dy = toY - y;
     const hasBall = true; // check the matrix later
@@ -30,4 +30,4 @@ export function canMoveKnight(toX, toY) {
                       (Math.abs(dx) === 0 && Math.abs(dy) === 2);
 
     return validMove && hasBall && noBallOnTarget;
-  }
+}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class Tile extends Component {
   render() {
     const { black } = this.props;
-    const fill = black ? 'black' : 'white';
+    const fill = black ? 'grey' : 'white';
     const stroke = black ? 'white' : 'black';
 
     return (

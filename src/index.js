@@ -7,12 +7,12 @@ import Board from './components/Board/Board';
 import { observe } from './components/Game/Game';
 
 
-// ReactDOM.render(<Board knightPosition={[2, 4]} />, document.getElementById('root'));
+// ReactDOM.render(<Board ballPosition={[2, 4]} />, document.getElementById('root'));
 // registerServiceWorker();
 
-observe(knightPosition =>
+observe(ballPosition =>
     ReactDOM.render(
-      <Board knightPosition={knightPosition} />,
+      <Board ballPosition={ballPosition} />,
       document.getElementById('root')
     )
   );
