@@ -9,7 +9,9 @@ const squareTarget = {
   canDrop(props, monitor) {
     const item = monitor.getItem();
     // return canMoveBall(item.id, item.startX, item.startY, props.x, props.y);
-    return canMoveBall(props.x, props.y);
+    console.log("propsCanDrop:", props);
+    
+    return canMoveBall(item.startX, item.startY, props.x, props.y, item.matrix);
   },
 
   // hover(props, monitor, component) {
@@ -33,9 +35,8 @@ const squareTarget = {
     const item = monitor.getItem();
     console.log("drop props:", props);
     console.log("drop item:", item);
-    moveBall(props.x, props.y);
-    // moveBall(item.id, item.startX, item.startY, props.x, props.y);
-    
+    moveBall(item.startX, item.startY, props.x, props.y, item.matrix, item.id);
+
     // You can also do nothing and return a drop result,
     // which will be available as monitor.getDropResult()
     // in the drag source's endDrag() method

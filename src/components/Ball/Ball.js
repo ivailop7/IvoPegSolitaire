@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { ItemTypes } from '../../Constants';
 import { DragSource } from 'react-dnd';
 import blueBall from './blue_ball.png';
@@ -10,7 +9,8 @@ const ballSource = {
   beginDrag(props, monitor, component) {
     const item = { id: props.id,
                    startX: props.x,
-                   startY: props.y};
+                   startY: props.y,
+                   matrix: props.matrix};
     return item;
   },
 
@@ -20,6 +20,9 @@ const ballSource = {
     // (like a card in Kanban board dragged between lists)
     // you can implement something like this to keep its
     // appearance dragged:
+    // console.log("Dragging props:", props);
+    // console.log("monitor.getItem():", monitor.getItem());
+    
     return monitor.getItem().id === props.id;
   },
 
@@ -36,6 +39,25 @@ const ballSource = {
     const dropResult = monitor.getDropResult();
     console.log("droppedItem:", item);
     console.log("dropResult:", dropResult);
+    
+    //// Have to update the matrix here that the ball before is now gone
+    const dx = dropResult.endX - item.startX;
+    const dy = dropResult.endY - item.startY;
+    
+    if(dx === 2) {
+      item.matrix[dropResult.endX - 1][dropResult.endY] = 0;
+    }
+    if(dx === -2) {
+      item.matrix[dropResult.endX + 1][dropResult.endY] = 0;
+    }
+    if(dy === 2) {
+      item.matrix[dropResult.endX][dropResult.endY-1] = 0;
+    }
+    if(dy === -2) {
+      item.matrix[dropResult.endX][dropResult.endY+1] = 0;
+    }
+    
+    // item.updateBoard(item.matrix);
     //CardActions.moveCardToList(item.id, dropResult.listId);
   }
 };

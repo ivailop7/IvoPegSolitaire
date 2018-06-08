@@ -53,7 +53,7 @@ class Board extends Component {
                             y={y} 
                             squareNum={squareNum} 
                             color={squareNum !== 1} >
-                {this.renderBall(x, y, squareNum, 'ball'.concat(x,y))}
+                {this.renderBall(x, y, squareNum, 'ball'.concat(x,y), board)}
               </BoardSquare>
           </div>)
       }
@@ -61,19 +61,20 @@ class Board extends Component {
     return grid;
   }
 
-  renderBall(x, y, squareNum, id) {
-    if(squareNum === 2) return <Ball id={id} x={x} y={y}/>;
+  renderBall(x, y, squareNum, id, matrix) {
+    if(squareNum === 2) return <Ball id={id} x={x} y={y} matrix={matrix} updateBoard={(b) => this.updateBoardAfterMove(b)}/>;
   }
 
-  handleSquareClick(toX, toY) {
-    if (canMoveBall(toX, toY)) {
-        moveBall(toX, toY);
+  handleSquareClick(fromX, fromY, toX, toY, matrix, id) {
+    if (canMoveBall(fromX, fromY, toX, toY, matrix, id)) {
+        moveBall(fromX, fromY, toX, toY, matrix, id);
     }
   }
 
-  updateBoardAfterMove() {
-
+  updateBoardAfterMove(updatedBoard) {
+    this.setState({board: updatedBoard});
   }
+
   render() {
     console.log(this.state.board);
     return (

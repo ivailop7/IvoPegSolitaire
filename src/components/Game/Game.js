@@ -1,8 +1,8 @@
-let ballPosition = [4, 3];
+let moveHappened = true;
 let observer = null;
 
 function emitChange() {
-  observer(ballPosition);
+  observer(moveHappened);
 }
 
 export function observe(o) {
@@ -14,20 +14,28 @@ export function observe(o) {
   emitChange();
 }
 
-export function moveBall(toX, toY) {
-  ballPosition = [toX, toY];
+export function moveBall(fromX, fromY, toX, toY, matrix, id) {
+  console.log("moveBall:",fromX, fromY, toX, toY, matrix, id);
+  
+  moveHappened = true;
   emitChange();
 }
 
-export function canMoveBall(toX, toY) {
-    const [x, y] = ballPosition;
-    const dx = toX - x;
-    const dy = toY - y;
-    const hasBall = true; // check the matrix later
-    const noBallOnTarget = true; // check the matrix later
+export function canMoveBall(fromX, fromY, toX, toY, matrix, id) {
+    // console.log("maa", matrix);
+    const dx = toX - fromX;
+    const dy = toY - fromY;
+    const emptySlot = matrix[toX][toY] === 0;
+    const jumpOverBall = true; //fix up later
+    
+    console.log("dx:",dx,"dy:",dy);
+    console.log("toX:",toX,"toY:",toY);
+    console.log("fromX:",fromX,"fromY:",fromY);
+    
 
     const validMove = (Math.abs(dx) === 2 && Math.abs(dy) === 0) ||
                       (Math.abs(dx) === 0 && Math.abs(dy) === 2);
 
-    return validMove && hasBall && noBallOnTarget;
+    return validMove && emptySlot && jumpOverBall;
+    // return false;
 }
