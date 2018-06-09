@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ItemTypes } from '../../Constants';
 import { DragSource } from 'react-dnd';
-import blueBall from './blue_ball.png';
+import blueBall from '../../assets/pixel_ball.png';
 import classes from './Ball.css'
 
 const ballSource = {

@@ -1,5 +1,21 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+body {
+  background: url("./assets/Wall4.png") no-repeat center center fixed;
+  /* https://alpha.wallhaven.cc/wallpaper/427479 */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: 'Cat Cafe';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/CatCafe.ttf');
+}
+
+h2 {
+  font-family: "Cat Cafe";
+  font-size: 24px;
+  color: aliceblue;
+}

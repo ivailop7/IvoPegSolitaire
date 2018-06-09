@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Tile from '../Tile/Tile';
 import { canMoveBall, moveBall } from '../Game/Game';
 import { ItemTypes } from '../../Constants';
@@ -109,13 +108,5 @@ class BoardSquare extends Component {
     );
   }
 }
-
-BoardSquare.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  connectDropTarget: PropTypes.func.isRequired,
-  isOver: PropTypes.bool.isRequired,
-  canDrop: PropTypes.bool.isRequired
-};
 
 export default DropTarget(ItemTypes.BALL, squareTarget, collect)(BoardSquare);

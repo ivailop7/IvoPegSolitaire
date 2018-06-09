@@ -10,6 +10,7 @@ export default class Tile extends Component {
     return (
       <div style={{
         backgroundColor: fill,
+        opacity: 0.7,
         color: stroke,
         width: '100%',
         height: '100%'
