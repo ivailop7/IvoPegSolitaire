@@ -10,7 +10,21 @@ class Board extends Component {
   state = {
     board: null
   }
+  // constructor(props) {
+  //   super(props)
+    updateBoardAfterMove = this.updateBoardAfterMove.bind(this);
+  // }
 
+  updateBoardAfterMove(updatedBoard) {
+    this.setState({board: updatedBoard});
+  }
+
+  // handler(e) {
+  //   e.preventDefault();
+  //   this.setState({
+  //     board: 111;
+  //   });
+  // }
   componentWillMount() {
     this.generateEmptyBoard(BOARD_SIZE);
   }
@@ -62,17 +76,13 @@ class Board extends Component {
   }
 
   renderBall(x, y, squareNum, id, matrix) {
-    if(squareNum === 2) return <Ball id={id} x={x} y={y} matrix={matrix} updateBoard={(b) => this.updateBoardAfterMove(b)}/>;
+    if(squareNum === 2) return <Ball id={id} x={x} y={y} matrix={matrix} updateBoard={this.updateBoardAfterMove}/>;
   }
 
   handleSquareClick(fromX, fromY, toX, toY, matrix, id) {
     if (canMoveBall(fromX, fromY, toX, toY, matrix, id)) {
         moveBall(fromX, fromY, toX, toY, matrix, id);
     }
-  }
-
-  updateBoardAfterMove(updatedBoard) {
-    this.setState({board: updatedBoard});
   }
 
   render() {

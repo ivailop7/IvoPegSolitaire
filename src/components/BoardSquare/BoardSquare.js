@@ -90,7 +90,7 @@ class BoardSquare extends Component {
   }
 
   render() {
-    const { x, y, connectDropTarget, isOver, canDrop, squareNum, color } = this.props;
+    const { connectDropTarget, isOver, canDrop, color } = this.props;
     const black = color;
 
     return connectDropTarget(

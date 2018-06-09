@@ -10,7 +10,8 @@ const ballSource = {
     const item = { id: props.id,
                    startX: props.x,
                    startY: props.y,
-                   matrix: props.matrix};
+                   matrix: props.matrix,
+                   updateBoard: props.updateBoard};
     return item;
   },
 
@@ -37,8 +38,8 @@ const ballSource = {
     // Dropped on a compatible target
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    console.log("droppedItem:", item);
-    console.log("dropResult:", dropResult);
+    // console.log("droppedItem:", item);
+    // console.log("dropResult:", dropResult);
     
     //// Have to update the matrix here that the ball before is now gone
     const dx = dropResult.endX - item.startX;
@@ -56,8 +57,13 @@ const ballSource = {
     if(dy === -2) {
       item.matrix[dropResult.endX][dropResult.endY+1] = 0;
     }
+    item.matrix[item.startX][item.startY] = 0;
+    item.matrix[dropResult.endX][dropResult.endY] = 2;
+    console.log("updated matrix:", item.matrix);
+    item.updateBoard(item.matrix);
+    // console.log(props);
     
-    // item.updateBoard(item.matrix);
+    // props.updateBoard(item.matrix);
     //CardActions.moveCardToList(item.id, dropResult.listId);
   }
 };

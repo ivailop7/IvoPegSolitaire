@@ -28,9 +28,9 @@ export function canMoveBall(fromX, fromY, toX, toY, matrix, id) {
     const emptySlot = matrix[toX][toY] === 0;
     const jumpOverBall = true; //fix up later
     
-    console.log("dx:",dx,"dy:",dy);
-    console.log("toX:",toX,"toY:",toY);
-    console.log("fromX:",fromX,"fromY:",fromY);
+    // console.log("dx:",dx,"dy:",dy);
+    // console.log("toX:",toX,"toY:",toY);
+    // console.log("fromX:",fromX,"fromY:",fromY);
     
 
     const validMove = (Math.abs(dx) === 2 && Math.abs(dy) === 0) ||
