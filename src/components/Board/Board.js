@@ -5,6 +5,9 @@ import BoardSquare from '../BoardSquare/BoardSquare';
 import Ball from '../Ball/Ball';
 import { canMoveBall, moveBall } from '../Game/Game';
 import { BOARD_SIZE } from '../../Constants';
+import classes from './Board.css';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 class Board extends Component {
   state = {
@@ -40,10 +43,10 @@ class Board extends Component {
     // Populate untouchable area
     for(let i = 0; i < size/3 - 1; i++) {
       for(let j = 0; j < size/3 - 1; j++) {
-        board[i][j] = 1;
-        board[i][size-j-1] = 1;
-        board[size-i-1][j] = 1;
-        board[size-i-1][size-j-1] = 1;
+        board[i][j] = -1;
+        board[i][size-j-1] = -1;
+        board[size-i-1][j] = -1;
+        board[size-i-1][size-j-1] = -1;
       }
     }
 
@@ -51,6 +54,66 @@ class Board extends Component {
     const middle = Math.round((size-1)/2, 0);
     board[middle][middle] = 0;
     this.setState({board: board})
+  }
+
+  generateTileStyle(x,y, squareNum) {
+    let tileStyle;
+    if (squareNum < 0) {
+      tileStyle = {
+        backgroundColor: 'grey',
+        opacity: 0,
+        color: 'grey',
+        width: '100%',
+        height: '100%',
+        border: 0
+      }
+    }
+    if (squareNum === 0) {
+      tileStyle = {
+        backgroundColor: 'grey',
+        opacity: 1,
+        color: 'grey',
+        width: '100%',
+        height: '100%',
+        border: 0
+      }
+    }
+    if (squareNum > 0) {
+      tileStyle = {
+        backgroundColor: 'grey',
+        opacity: 1,
+        color: 'grey',
+        width: '100%',
+        height: '100%',
+        border: 0
+      }
+    }
+    const radius = '10px';
+    //harcoded, dynamize later
+    //top left
+    if((x===2 && y===0) || (x===0 && y===2)) {
+      // tileStyle.border = '1px solid #333';
+      tileStyle.borderRadius = `${radius} 0 0 0`;
+    }
+    // top right
+    else if((x===0 && y===4) || (x===2 && y===6)) {
+      // tileStyle.border = '1px solid #333';
+      tileStyle.borderRadius = `0 ${radius} 0 0`;
+    }
+    // bottom right
+    else if((x===6 && y===4) || (x===4 && y===6)) {
+      // tileStyle.border = '1px solid #333';
+      tileStyle.borderRadius = `0 0 ${radius} 0`;
+    }
+    // bottom left
+    else if((x===6 && y===2) || (x===4 && y===0)) {
+      // tileStyle.border = '1px solid #333';
+      tileStyle.borderRadius = `0 0 0 ${radius}`;
+    }
+    // tileStyle.boxShadow = '2px 2px 2px #333';
+
+    return tileStyle;
+    
   }
 
   renderSquares() {
@@ -61,12 +124,12 @@ class Board extends Component {
         const squareNum = board[x][y];
         grid.push( 
           <div key={'bsquare'.concat(x,y) } 
-                style={{ width: '40px', height: '40px' }} >
+                className={classes.Square} >
               <BoardSquare key={'bsquare'.concat(x,y)}
-                            x={x} 
-                            y={y} 
-                            squareNum={squareNum} 
-                            color={squareNum !== 1} >
+                            x={x}
+                            y={y}
+                            squareNum={squareNum}
+                            tileStyle={this.generateTileStyle(x,y, squareNum)} >
                 {this.renderBall(x, y, squareNum, 'ball'.concat(x,y), board)}
               </BoardSquare>
           </div>)
@@ -88,13 +151,13 @@ class Board extends Component {
   render() {
     console.log(this.state.board);
     return (
-      <div style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        flexWrap: 'wrap'
-      }}>
-        { this.renderSquares() }
+      <div className={classes.hocBoard}>
+      <Header/>
+      <br/><br/><br/><br/><br/><br/>
+        <div className={classes.Board}>
+          { this.renderSquares() }
+        </div>
+      <Footer/>
       </div>
     );
   }

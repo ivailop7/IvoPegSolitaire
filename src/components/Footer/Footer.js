@@ -9,6 +9,7 @@ import pinterestImg from '../../assets/pinterest.png';
 const footer = (props) => {
     return(
         <div className={classes.shareButtons} id={classes.shareButton}>
+            <center>
             <div className={classes.text}>Share the game</div>
             <a href="https://plus.google.com/share?url=http://pegsolitaire.ivaylopavlov.com" 
                target="_blank">
@@ -30,6 +31,7 @@ const footer = (props) => {
                 target="_blank">
                 <img src={pinterestImg} alt="Pinterest" />
             </a>
+            </center>
         </div>
     );
 };

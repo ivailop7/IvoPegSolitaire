@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ItemTypes } from '../../Constants';
 import { DragSource } from 'react-dnd';
 import blueBall from '../../assets/pixel_ball.png';
-import classes from './Ball.css'
+import classes from '../Board/Board.css';
 
 const ballSource = {
   // Return the data describing the dragged item (required)
@@ -64,7 +64,6 @@ const ballSource = {
     // console.log(props);
     
     // props.updateBoard(item.matrix);
-    //CardActions.moveCardToList(item.id, dropResult.listId);
   }
 };
 /**
@@ -83,16 +82,15 @@ class Ball extends Component {
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
         <div style={{
+          paddingTop: "10px",
+          paddingLeft: "10px",
           opacity: isDragging ? 0.5 : 1,
-          fontSize: 25,
-          fontWeight: 'bold',
-          cursor: 'move'
+          cursor: 'move',
+          transition: '.2s linear',
         }}>
-        <div className={classes.centeringDiv}>
-          <img src={blueBall} className={classes.Ball} alt={ id }/>
-          <div>
-            {isDragging && ' (I am being dragged right now)'}
-          </div>
+        <img src={blueBall} className={classes.Ball} alt={id}/>
+        <div>
+          {isDragging}
         </div>
       </div>
     );

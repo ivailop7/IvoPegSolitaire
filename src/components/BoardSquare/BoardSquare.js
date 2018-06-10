@@ -84,13 +84,13 @@ class BoardSquare extends Component {
         zIndex: 1,
         opacity: 0.5,
         backgroundColor: color,
+        borderRadius: '50px',
       }} />
     );
   }
 
   render() {
-    const { connectDropTarget, isOver, canDrop, color } = this.props;
-    const black = color;
+    const { connectDropTarget, isOver, canDrop, tileStyle } = this.props;
 
     return connectDropTarget(
       <div style={{
@@ -98,10 +98,10 @@ class BoardSquare extends Component {
         width: '100%',
         height: '100%'
       }}>
-        <Tile black={black}>
+        <Tile tileStyle={tileStyle}>
           {this.props.children}
         </Tile>
-        {isOver && !canDrop && this.renderOverlay('red')}
+        {/* {isOver && !canDrop && this.renderOverlay('red')} */}
         {!isOver && canDrop && this.renderOverlay('yellow')}
         {isOver && canDrop && this.renderOverlay('green')}
       </div>

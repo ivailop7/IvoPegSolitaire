@@ -13,9 +13,3 @@ body {
   font-weight: 400;
   src: url('./assets/CatCafe.ttf');
 }
-
-h2 {
-  font-family: "Cat Cafe";
-  font-size: 24px;
-  color: aliceblue;
-}

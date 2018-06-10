@@ -5,7 +5,7 @@ import goToBlog from '../../assets/go_to_blog.png';
 
 const header = () => {
     return(
-        <div id="cornerBanners">
+        <div className={classes.cornerBanners}>
             <a href="https://github.com/ivailop7/IvoPegSolitaire">
             <img className={classes.rightLink}
                     src={forkOnGitHub}
@@ -17,7 +17,7 @@ const header = () => {
                     src={goToBlog}
                     alt="Go To Blog" />
             </a>
-        <center><h2>Ivo Peg Solitaire</h2></center>
+            <center><h2>Ivo Peg Solitaire</h2></center>
         </div>
     );
 }
