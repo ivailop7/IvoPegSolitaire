@@ -23,6 +23,7 @@
 }
 
 .Ball {
+    padding-left: 4px;
     width: 80%;
     height: 80%;
     border: none;
@@ -49,10 +50,13 @@ and (max-device-width : 480px) {
         height: 50vh;
         overflow-x: hidden;
         overflow: hidden;
-        /* min-width: 40vw;
-        min-height: 60vh; */
-        /* max-width: 800px;
-        max-height: 800px; */
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
     }
 }
 

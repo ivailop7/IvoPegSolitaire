@@ -65,7 +65,7 @@ class Board extends Component {
         color: 'grey',
         width: '100%',
         height: '100%',
-        border: 0
+        border: '0px'
       }
     }
     if (squareNum === 0) {
@@ -75,7 +75,7 @@ class Board extends Component {
         color: 'grey',
         width: '100%',
         height: '100%',
-        border: 0
+        border: '0px'
       }
     }
     if (squareNum > 0) {
@@ -85,7 +85,7 @@ class Board extends Component {
         color: 'grey',
         width: '100%',
         height: '100%',
-        border: 0
+        border: '0px'
       }
     }
     const radius = '10px';
@@ -110,8 +110,7 @@ class Board extends Component {
       // tileStyle.border = '1px solid #333';
       tileStyle.borderRadius = `0 0 0 ${radius}`;
     }
-    // tileStyle.boxShadow = '2px 2px 2px #333';
-
+    tileStyle.border = '1px solid #666666';
     return tileStyle;
     
   }
