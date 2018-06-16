@@ -128,7 +128,7 @@ class Board extends Component {
                 title={pegsRemaining === 1 ? "Congratulations!" : "Great game! You almost won!"}
                 pegsLeft={pegsRemaining}
                 resetGame={this.generateEmptyBoard}/> : null}
-      <br/><br/><br/><br/><br/><br/>
+      <p/><p/><p/><p/>
         <div className={classes.Board}>
           { this.renderSquares() }
         </div>

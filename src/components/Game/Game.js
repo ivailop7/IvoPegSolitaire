@@ -15,8 +15,6 @@ export function observe(o) {
 }
 
 export function moveBall(fromX, fromY, toX, toY, matrix, id) {
-  console.log("moveBall:",fromX, fromY, toX, toY, matrix, id);
-  
   moveHappened = true;
   emitChange();
 }
