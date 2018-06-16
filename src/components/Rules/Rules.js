@@ -44,7 +44,7 @@ class SimpleModal extends React.Component {
             </Typography>
             <Typography variant="subheading" id="simple-modal-description" style={{color: '#ffffff'}}>
             <br/>
-              A valid move is to jump a peg orthogonally over an adjacent peg into a hole two positions away and then to remove the jumped peg.
+              A valid move is to jump a peg orthogonally over an adjacent peg into an empty slot two positions away and then to remove the jumped peg.
               You win by remaining with a single peg.
             </Typography>
             <br/>
