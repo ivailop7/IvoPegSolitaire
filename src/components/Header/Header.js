@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './Header.css';
 import forkOnGitHub from '../../assets/fork_on_github.png';
 import goToBlog from '../../assets/go_to_blog.png';
+import classes from './Header.css';
 
 const header = () => {
     return(

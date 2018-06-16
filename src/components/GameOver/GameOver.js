@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
+import { BOARD_SIZE } from '../../Constants';
 
 const styles = theme => ({
   paper: {
@@ -43,7 +44,7 @@ class SimpleModal extends React.Component {
   }
 
   startNewGame = () => {
-      this.props.resetGame(7);
+      this.props.resetGame(BOARD_SIZE);
       this.handleClose();
   }
   
