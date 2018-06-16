@@ -12,7 +12,6 @@ const footer = (props) => {
         <div className={classes.shareButtons} id={classes.shareButton}>
             <center>
             <RulesModal/>
-            <br/>
             <div className={classes.text}>Share the game</div>
             <a href="https://plus.google.com/share?url=http://pegsolitaire.ivaylopavlov.com">
                 <img src={googleImg} alt="Google" />
