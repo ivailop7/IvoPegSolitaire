@@ -14,10 +14,11 @@ class Board extends Component {
     board: null
   }
   // constructor(props) {
-  //   super(props)
-    updateBoardAfterMove = this.updateBoardAfterMove.bind(this);
+  //   super(props);
+  //   this.child = React.createRef();  
   // }
 
+  updateBoardAfterMove = this.updateBoardAfterMove.bind(this);
   updateBoardAfterMove(updatedBoard) {
     this.setState({board: updatedBoard});
   }
