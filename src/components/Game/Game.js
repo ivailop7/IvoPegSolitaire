@@ -22,30 +22,11 @@ export function moveBall(fromX, fromY, toX, toY, matrix, id) {
 }
 
 export function canMoveBall(fromX, fromY, toX, toY, matrix, id) {
-    if(!anyValidMovesLeft(matrix)) {
-      let counter=0;
-      for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix.length; j++) {
-          if(matrix[i][j]===2) counter++;
-        }
-      }
-      if(counter === 1) {
-        //Show Material Dialoag with Share Result to FB/Twitter vs Start a new game.
-        return alert("Congratulations! You solved the game!");
-      }
-      else {
-        //Show Material Dialoag with Share Result to FB/Twitter vs Start a new game.
-        return alert("No Moves Left. Congratulations! You had only " + counter + " balls left.");
-      }
-    }
-    // console.log("maa", matrix);
+    if(!anyValidMovesLeft(matrix)) return false;
+
     const dx = toX - fromX;
     const dy = toY - fromY;
     const emptySlot = matrix[toX][toY] === 0;
-    
-    // console.log("dx:",dx,"dy:",dy);
-    // console.log("toX:",toX,"toY:",toY);
-    // console.log("fromX:",fromX,"fromY:",fromY);
 
     const validMove = (dx === -2 && Math.abs(dy) === 0 && matrix[fromX-1][fromY] === 2) || 
                       (dx === 2 && Math.abs(dy)  === 0 && matrix[fromX+1][fromY] === 2) ||
@@ -53,7 +34,6 @@ export function canMoveBall(fromX, fromY, toX, toY, matrix, id) {
                       (Math.abs(dx) === 0 && dy === -2 && matrix[fromX][fromY-1] === 2);
 
     return validMove && emptySlot;
-    // return false;
 }
 
 export function anyValidMovesLeft(matrix) {
@@ -76,4 +56,14 @@ export function anyValidMovesLeft(matrix) {
     }
   }
   return false;
+}
+
+export function pegsLeft(matrix) {
+  let counter=0;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if(matrix[i][j]===2) counter++;
+    }
+  }
+  return counter;
 }

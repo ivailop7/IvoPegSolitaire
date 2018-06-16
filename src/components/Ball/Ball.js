@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ItemTypes } from '../../Constants';
 import { DragSource } from 'react-dnd';
 import blueBall from '../../assets/pixel_ball.png';
+import { ItemTypes } from '../../Constants';
 import classes from '../Board/Board.css';
 
 const ballSource = {
@@ -17,58 +17,31 @@ const ballSource = {
 
   // Middle State
   isDragging(props, monitor) {
-    // If your component gets unmounted while dragged
-    // (like a card in Kanban board dragged between lists)
-    // you can implement something like this to keep its
-    // appearance dragged:
-    // console.log("Dragging props:", props);
-    // console.log("monitor.getItem():", monitor.getItem());
-    
     return monitor.getItem().id === props.id;
   },
 
   // Final State
   endDrag(props, monitor, component) {
-    // Dropped on a incompatible target
-    if (!monitor.didDrop()) {
-      console.log("Drop Failure");
-      return;
-    }
+    // Dropped on an incompatible target
+    if (!monitor.didDrop()) return;
 
     // Dropped on a compatible target
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    // console.log("droppedItem:", item);
-    // console.log("dropResult:", dropResult);
-    
-    //// Have to update the matrix here that the ball before is now gone
     const dx = dropResult.endX - item.startX;
     const dy = dropResult.endY - item.startY;
     
-    if(dx === 2) {
-      item.matrix[dropResult.endX - 1][dropResult.endY] = 0;
-    }
-    if(dx === -2) {
-      item.matrix[dropResult.endX + 1][dropResult.endY] = 0;
-    }
-    if(dy === 2) {
-      item.matrix[dropResult.endX][dropResult.endY-1] = 0;
-    }
-    if(dy === -2) {
-      item.matrix[dropResult.endX][dropResult.endY+1] = 0;
-    }
+    if(dx === 2)  item.matrix[dropResult.endX - 1][dropResult.endY] = 0;
+    if(dx === -2) item.matrix[dropResult.endX + 1][dropResult.endY] = 0;
+    if(dy === 2)  item.matrix[dropResult.endX][dropResult.endY-1] = 0;
+    if(dy === -2) item.matrix[dropResult.endX][dropResult.endY+1] = 0;
     item.matrix[item.startX][item.startY] = 0;
     item.matrix[dropResult.endX][dropResult.endY] = 2;
-    console.log("updated matrix:", item.matrix);
     item.updateBoard(item.matrix);
-    // console.log(props);
-    
-    // props.updateBoard(item.matrix);
   }
 };
-/**
- * Specifies which props to inject into your component.
- */
+
+// Specifies which props to inject into your component.
 function collect(connect, monitor) {
     return {
       connectDragSource: connect.dragSource(),

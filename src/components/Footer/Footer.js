@@ -1,12 +1,11 @@
 import React from 'react';
-import classes from './Footer.css';
-import googleImg from '../../assets/google.png';
 import facebookImg from '../../assets/facebook.png';
+import googleImg from '../../assets/google.png';
 import linkedinImg from '../../assets/linkedin.png';
-import twitterImg from '../../assets/twitter.png';
 import pinterestImg from '../../assets/pinterest.png';
-import Button from '@material-ui/core/Button';
+import twitterImg from '../../assets/twitter.png';
 import RulesModal from '../Rules/Rules';
+import classes from './Footer.css';
 
 const footer = (props) => {
     return(

@@ -1,44 +1,19 @@
 import React, { Component } from 'react';
-import Tile from '../Tile/Tile';
-import { canMoveBall, moveBall } from '../Game/Game';
-import { ItemTypes } from '../../Constants';
 import { DropTarget } from 'react-dnd';
+import { ItemTypes } from '../../Constants';
+import { canMoveBall, moveBall } from '../Game/Game';
+import Tile from '../Tile/Tile';
 
 const squareTarget = {
   canDrop(props, monitor) {
-    const item = monitor.getItem();
-    // return canMoveBall(item.id, item.startX, item.startY, props.x, props.y);
-    console.log("propsCanDrop:", props);
-    
+    const item = monitor.getItem();    
     return canMoveBall(item.startX, item.startY, props.x, props.y, item.matrix);
   },
 
-  // hover(props, monitor, component) {
-  //   // This is fired very often and lets you perform side effects
-  //   // in response to the hover. You can't handle enter and leave
-  //   // here—if you need them, put monitor.isOver() into collect() so you
-  //   // can just use componentWillReceiveProps() to handle enter/leave.
-
-  //   // You can access the coordinates if you need them
-  //   const clientOffset = monitor.getClientOffset();
-  //   const componentRect = findDOMNode(component).getBoundingClientRect();
-
-  //   // You can check whether we're over a nested drop target
-  //   const isJustOverThisOne = monitor.isOver({ shallow: true });
-
-  //   // You will receive hover() even for items for which canDrop() is false
-  //   const canDrop = monitor.canDrop();
-  // },
-
   drop(props, monitor) {
     const item = monitor.getItem();
-    console.log("drop props:", props);
-    console.log("drop item:", item);
     moveBall(item.startX, item.startY, props.x, props.y, item.matrix, item.id);
 
-    // You can also do nothing and return a drop result,
-    // which will be available as monitor.getDropResult()
-    // in the drag source's endDrag() method
     return { moved: true,
              endX: props.x,
              endY: props.y 
@@ -57,22 +32,7 @@ function collect(connect, monitor) {
 }
 
 class BoardSquare extends Component {
-  // Optional
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.isOver && nextProps.isOver) {
-      // You can use this as enter handler
-    }
-
-    if (this.props.isOver && !nextProps.isOver) {
-      // You can use this as leave handler
-    }
-
-    if (this.props.isOverCurrent && !nextProps.isOverCurrent) {
-      // You can be more specific and track enter/leave
-      // shallowly, not including nested targets
-    }
-  }
-
+  
   renderOverlay(color) {
     return (
       <div style={{
@@ -101,7 +61,6 @@ class BoardSquare extends Component {
         <Tile tileStyle={tileStyle}>
           {this.props.children}
         </Tile>
-        {/* {isOver && !canDrop && this.renderOverlay('red')} */}
         {!isOver && canDrop && this.renderOverlay('yellow')}
         {isOver && canDrop && this.renderOverlay('green')}
       </div>
