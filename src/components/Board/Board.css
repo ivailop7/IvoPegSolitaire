@@ -1,6 +1,153 @@
+.hocBoard {
+    padding-top: 10px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .Board {
-    /* max-width: 200px;
-    max-height: 200px; */
-    /* width: 200px;
-    height: 200px; */
+    margin: 0px auto;
+    width: 50vw;
+    height: 68vh;
+    max-width: 730px;
+    max-height: 730px;
+}
+
+.Square {
+    width: 14%;
+    height: 14%;
+    float: left;
+}
+
+.Ball {
+    padding-left: 4px;
+    width: 80%;
+    height: 80%;
+    border: none;
+    margin: 0 auto;
+}
+
+/* iPhone 6/6S/7/8+*/
+@media only screen and (max-width : 415px) and (max-height : 824px) {
+    .Board {
+        margin: -40px auto;
+        width: 101vw;
+        height: 57vh;
+        overflow-x: hidden;
+        overflow: hidden;
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
+    }
+    img
+    {
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    }
+}
+/* iPhone x */
+@media only screen and (max-width : 376px) and (max-height : 813px) {
+    .Board {
+        margin: -30px auto;
+        width: 101vw;
+        height: 50vh;
+        overflow-x: hidden;
+        overflow: hidden;
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
+    }
+    img
+    {
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    }
+}
+
+/* iPhone 6/6S/7/8 */
+@media only screen and (max-width : 376px) and (max-device-height : 668px) {
+    .Board {
+        margin: -40px auto;
+        width: 101vw;
+        height: 60vh;
+        overflow-x: hidden;
+        overflow: hidden;
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
+    }
+    img
+    {
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    .Board {
+        margin: -40px auto;
+        width: 60vw;
+        height: 70vh;
+        max-width: 730px;
+        max-height: 730px;
+        overflow-x: hidden;
+        overflow: hidden;
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
+    }
+    img
+    {
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    .Board {
+        margin: -30px auto;
+        width: 90vw;
+        height: 70vh;
+        max-width: 730px;
+        max-height: 730px;
+        overflow-x: hidden;
+        overflow: hidden;
+    }
+    .Ball {
+        padding-left: 0px;
+        width: 80%;
+        height: 80%;
+        border: none;
+        margin: 0 auto;
+    }
+    img
+    {
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    }
 }

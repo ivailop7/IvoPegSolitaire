@@ -1,5 +1,14 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+body {
+  background: url("./assets/Wall4.png") repeat-y center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: 'Cat Cafe';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/CatCafe.ttf');
+}

@@ -1,0 +1,43 @@
+.cornerBanners {
+    position: fixed;
+    top: 0px;
+    height: 40px;
+    width: 100%;
+}
+.rightLink {
+    position: absolute; 
+    right: 0; 
+    border: 0;
+}
+.leftLink {
+    position: absolute;
+    left: 0; 
+    border: 0;
+}
+h2 {
+    margin: 3px;
+    font-family: "Cat Cafe";
+    font-size: 54px;
+    color: aliceblue;
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 415px) {
+    h2 {
+        margin: 20px;
+        font-family: "Cat Cafe";
+        font-size: 32px;
+        color: aliceblue;
+    }
+    .rightLink {
+        position: absolute; 
+        right: 0; 
+        border: 0;
+        width: 80px;
+    }
+    .leftLink {
+        position: absolute;
+        left: 0; 
+        border: 0;
+        width: 80px;
+    }
+}

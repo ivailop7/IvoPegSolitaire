@@ -1,8 +1,8 @@
-let knightPosition = [4, 3];
+let moveHappened = true;
 let observer = null;
 
 function emitChange() {
-  observer(knightPosition);
+  observer(moveHappened);
 }
 
 export function observe(o) {
@@ -14,20 +14,54 @@ export function observe(o) {
   emitChange();
 }
 
-export function moveKnight(toX, toY) {
-  knightPosition = [toX, toY];
+export function moveBall(fromX, fromY, toX, toY, matrix, id) {
+  moveHappened = true;
   emitChange();
 }
 
-export function canMoveKnight(toX, toY) {  
-    const [x, y] = knightPosition;
-    const dx = toX - x;
-    const dy = toY - y;
-    const hasBall = true; // check the matrix later
-    const noBallOnTarget = true; // check the matrix later
+export function canMoveBall(fromX, fromY, toX, toY, matrix, id) {
+    if(!anyValidMovesLeft(matrix)) return false;
 
-    const validMove = (Math.abs(dx) === 2 && Math.abs(dy) === 0) ||
-                      (Math.abs(dx) === 0 && Math.abs(dy) === 2);
+    const dx = toX - fromX;
+    const dy = toY - fromY;
+    const emptySlot = matrix[toX][toY] === 0;
 
-    return validMove && hasBall && noBallOnTarget;
+    const validMove = (dx === -2 && Math.abs(dy) === 0 && matrix[fromX-1][fromY] === 2) || 
+                      (dx === 2 && Math.abs(dy)  === 0 && matrix[fromX+1][fromY] === 2) ||
+                      (Math.abs(dx) === 0 && dy  === 2 && matrix[fromX][fromY+1] === 2) ||
+                      (Math.abs(dx) === 0 && dy === -2 && matrix[fromX][fromY-1] === 2);
+
+    return validMove && emptySlot;
+}
+
+export function anyValidMovesLeft(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if(matrix[i][j]===2) {
+        if(i-1>=0 && i-2>=0) {
+          if(matrix[i-1][j]===2 && matrix[i-2][j]===0) return true;
+        }
+        if(i+1<matrix.length && i+2<matrix.length) {
+          if(matrix[i+1][j]===2 && matrix[i+2][j]===0) return true;
+        }
+        if(j-1>=0 && j-2>=0) {
+          if(matrix[i][j-1]===2 && matrix[i][j-2]===0) return true;
+        }
+        if(j+1<matrix.length && j+2<matrix.length) {
+          if(matrix[i][j+1]===2 && matrix[i][j+2]===0) return true;
+        }
+      }
+    }
   }
+  return false;
+}
+
+export function pegsLeft(matrix) {
+  let counter=0;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if(matrix[i][j]===2) counter++;
+    }
+  }
+  return counter;
+}

@@ -1,18 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
 import Board from './components/Board/Board';
 import { observe } from './components/Game/Game';
+import './index.css';
 
-
-// ReactDOM.render(<Board knightPosition={[2, 4]} />, document.getElementById('root'));
-// registerServiceWorker();
-
-observe(knightPosition =>
-    ReactDOM.render(
-      <Board knightPosition={knightPosition} />,
-      document.getElementById('root')
-    )
-  );
+observe(moveHappened =>
+  ReactDOM.render(<Board moveHappened={moveHappened} />, document.getElementById('root'))
+);

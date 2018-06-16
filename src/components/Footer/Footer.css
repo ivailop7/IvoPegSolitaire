@@ -1,0 +1,47 @@
+
+.shareButtons {
+    margin: 0 auto;
+    font-family: "Cat Cafe";
+    font-size: 24px;
+    height: 35px;
+    color: aliceblue;
+    position: fixed;
+    bottom: 77px;
+    width: 100%;
+}
+.text {
+    vertical-align: middle;
+    line-height: 30px;
+}
+#shareButton img {
+    width: 35px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    display: inline;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 415px) {
+    .shareButtons {
+        margin: 0 auto;
+        font-family: "Cat Cafe";
+        font-size: 16px;
+        height: 20px;
+        color: aliceblue;
+        position: fixed;
+        bottom: 65px;
+        width: 100%;
+    }
+    .text {
+        vertical-align: middle;
+        line-height: 20px;
+    }
+    #shareButton img {
+        width: 20px;
+        padding: 5px;
+        border: 0;
+        box-shadow: 0;
+        display: inline;
+    }
+}
