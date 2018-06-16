@@ -17,6 +17,7 @@ class Board extends Component {
 
   updateBoardAfterMove = this.updateBoardAfterMove.bind(this);
   generateEmptyBoard = this.generateEmptyBoard.bind(this);
+  
   updateBoardAfterMove(updatedBoard) {
     this.setState({board: updatedBoard});
   }
