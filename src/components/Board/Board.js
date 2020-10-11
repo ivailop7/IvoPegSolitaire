@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
-import { default as TouchBackend } from 'react-dnd-touch-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { DndProvider } from 'react-dnd';
 import { BOARD_SIZE } from '../../Constants';
 import Ball from '../Ball/Ball';
 import BoardSquare from '../BoardSquare/BoardSquare';
@@ -119,23 +119,25 @@ class Board extends Component {
     const pegsRemaining = pegsLeft(this.state.board);
     
     return (
-      <div className={classes.hocBoard}>
-      <Header/>
-      {!anyValidMovesLeft(this.state.board) ?
-      <GameOver text={pegsRemaining === 1 ? 
-                      "You solved the game! You got a single peg left.":
-                      "No Moves Left. You had only " + pegsRemaining + " pegs left."} 
-                title={pegsRemaining === 1 ? "Congratulations!" : "Great game! You almost won!"}
-                pegsLeft={pegsRemaining}
-                resetGame={this.generateEmptyBoard}/> : null}
-      <p/><p/><p/><p/>
-        <div className={classes.Board}>
-          { this.renderSquares() }
+      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
+        <div className={classes.hocBoard}>
+        <Header/>
+        {!anyValidMovesLeft(this.state.board) ?
+        <GameOver text={pegsRemaining === 1 ? 
+                        "You solved the game! You got a single peg left.":
+                        "No Moves Left. You had only " + pegsRemaining + " pegs left."} 
+                  title={pegsRemaining === 1 ? "Congratulations!" : "Great game! You almost won!"}
+                  pegsLeft={pegsRemaining}
+                  resetGame={this.generateEmptyBoard}/> : null}
+        <p/><p/><p/><p/>
+          <div className={classes.Board}>
+            { this.renderSquares() }
+          </div>
+        <Footer/>
         </div>
-      <Footer/>
-      </div>
+      </DndProvider>
     );
   }
 }
 
-export default DragDropContext(TouchBackend({ enableMouseEvents: true }))(Board);
+export default Board;
